@@ -1,0 +1,10 @@
+{
+  "firebase":{
+     "apiKey":"AIzaSyDMTRBygCf1wEy_4HUiqWfP_cluMdMtwV8",
+     "authDomain":"crud-f4afe.firebaseapp.com",
+     "databaseURL":"https://crud-f4afe-default-rtdb.asia-southeast1.firebasedatabase.app",
+     "projectId":"crud-f4afe",
+     "storageBucket":"crud-f4afe.appspot.com",
+     "messagingSenderId":"224643545934"
+  }
+}
