@@ -2,39 +2,38 @@
   <div class="card card-body mt-4">
     <form @submit.prevent="onSubmit">
       <div class="form-group">
-        <label>Name</label>
-        <input v-model="form.name" class="form-control" required />
+        <label>Title</label>
+        <input v-model="form.title" class="form-control" required />
       </div>
 
       <div class="form-group mt-3">
-        <label>Email</label>
+        <label>Description</label>
         <input
-          v-model="form.email"
+          v-model="form.description"
           class="form-control"
-          type="email"
           required
         />
       </div>
 
       <button type="submit" class="btn btn-success mt-3">
-        Create User
+        Create Post
       </button>
     </form>
   </div>
 </template>
 
 <script>
-import { User } from '@/service'
+import { Post } from '@/service'
 import { reactive } from 'vue'
 
 export default {
   setup() {
-    const form = reactive({ name: '', email: '' })
+    const form = reactive({ title: '', description: '' })
 
     const onSubmit = async () => {
-      await User.create({ ...form })
-      form.name = ''
-      form.email = ''
+      await Post.create({ ...form })
+      form.title = ''
+      form.description = ''
     }
 
     return { form, onSubmit }

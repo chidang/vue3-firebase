@@ -1,14 +1,14 @@
 <template>
-  <UserCreate />
-  <UserList />
+  <PostCreate />
+  <PostList />
 </template>
 
 <script>
-import UserCreate from '@/components/UserCreate.vue'
-import UserList from '@/components/UserList.vue'
+import PostCreate from '@/components/PostCreate.vue'
+import PostList from '@/components/PostList.vue'
 
 export default {
   name: 'Home',
-  components: { UserCreate, UserList }
+  components: { PostCreate, PostList }
 }
 </script>
