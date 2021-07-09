@@ -1,18 +1,18 @@
 <template>
   <div class="card card-body mt-4">
-    <h3>Edit users</h3>
+    <h3>Edit posts</h3>
     <form @submit.prevent="update">
       <div class="form-group">
         <label>Name</label>
-        <input v-model="form.name" class="form-control" required />
+        <input v-model="form.title" class="form-control" required />
       </div>
 
       <div class="form-group mt-3">
-        <label>Email</label>
+        <label>Description</label>
         <input
-          v-model="form.email"
+          v-model="form.description"
           class="form-control"
-          type="email"
+          type="description"
           required
         />
       </div>
@@ -27,27 +27,27 @@
 <script>
 import { reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { User } from '@/service'
+import { Post } from '@/service'
 
 export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
-    const userId = computed(() => route.params.id)
+    const postId = computed(() => route.params.id)
 
-    const form = reactive({ name: '', email: '' })
+    const form = reactive({ title: '', description: '' })
     onMounted(async () => {
-      const user = await User.find(userId.value)
-      console.log(user, userId.value)
-      form.name = user.name
-      form.email = user.email
+      const post = await Post.find(postId.value)
+      console.log(post, postId.value)
+      form.title = post.title
+      form.description = post.description
     })
 
     const update = async () => {
-      await User.update(userId.value, { ...form })
+      await Post.update(postId.value, { ...form })
       router.push('/')
-      form.name = ''
-      form.email = ''
+      form.title = ''
+      form.description = ''
     }
 
     return { form, update }
