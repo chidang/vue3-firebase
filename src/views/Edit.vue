@@ -27,7 +27,7 @@
 <script>
 import { reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getUser, updateUser } from '@/firebase'
+import { User } from '@/service'
 
 export default {
   setup() {
@@ -37,14 +37,14 @@ export default {
 
     const form = reactive({ name: '', email: '' })
     onMounted(async () => {
-      const user = await getUser(userId.value)
+      const user = await User.find(userId.value)
       console.log(user, userId.value)
       form.name = user.name
       form.email = user.email
     })
 
     const update = async () => {
-      await updateUser(userId.value, { ...form })
+      await User.update(userId.value, { ...form })
       router.push('/')
       form.name = ''
       form.email = ''

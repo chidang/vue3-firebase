@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { createUser } from '@/firebase'
+import { User } from '@/service'
 import { reactive } from 'vue'
 
 export default {
@@ -32,7 +32,7 @@ export default {
     const form = reactive({ name: '', email: '' })
 
     const onSubmit = async () => {
-      await createUser({ ...form })
+      await User.create({ ...form })
       form.name = ''
       form.email = ''
     }
