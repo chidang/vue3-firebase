@@ -1,22 +1,15 @@
-import { ref, onUnmounted } from 'vue'
+import { doc, addDoc, deleteDoc, setDoc, collection, getDocs, getDoc } from "firebase/firestore"
 import db from '@/db'
 
-const postsCollection = db.collection('posts')
+const colection = 'posts'
 
 export default {
-  all: () => {
-    const posts = ref([])
-    const close = postsCollection.onSnapshot(snapshot => {
-      posts.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-    })
-    onUnmounted(close)
-    return posts
-  },
+  all: () => getDocs(collection(db, colection)),
   find: async id => {
-    const post = await postsCollection.doc(id).get()
-    return post.exists ? post.data() : null
+    const docSnap = await getDoc(doc(db, colection, id))
+    return docSnap.exists() ? docSnap.data() : null
   },
-  create: post => postsCollection.add(post),
-  update: (id, post) => postsCollection.doc(id).update(post),
-  delete: id => postsCollection.doc(id).delete()
+  create: post => addDoc(collection(db, colection), post),
+  update: (id, post) => setDoc(doc(db, colection, id), post),
+  delete: id => deleteDoc(doc(db, colection, id))
 }

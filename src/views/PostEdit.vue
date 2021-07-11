@@ -46,8 +46,6 @@ export default {
     const update = async () => {
       await Post.update(postId.value, { ...form })
       router.push('/')
-      form.title = ''
-      form.description = ''
     }
 
     return { form, update }

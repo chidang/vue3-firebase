@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from "firebase/firestore"
 import development from "@/config/development.json"
 import production from "@/config/production.json"
 
@@ -7,6 +8,5 @@ if (process.env.NODE_ENV === "production") {
   config = Object.freeze(production)
 }
 
-const firebaseApp = firebase.initializeApp(config.firebase)
-
-export default firebaseApp.firestore()
+initializeApp(config.firebase)
+export default getFirestore();

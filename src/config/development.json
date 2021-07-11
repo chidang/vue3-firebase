@@ -5,6 +5,7 @@
      "databaseURL":"https://crud-f4afe-default-rtdb.asia-southeast1.firebasedatabase.app",
      "projectId":"crud-f4afe",
      "storageBucket":"crud-f4afe.appspot.com",
-     "messagingSenderId":"224643545934"
+     "messagingSenderId":"224643545934",
+     "appId": "1:224643545934:web:e4671fbce96939c22c3c1f"
   }
 }
