@@ -1,6 +1,6 @@
 <template>
   <div class="card card-body mt-4">
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="submit">
       <div class="form-group">
         <label>Title</label>
         <input v-model="form.title" class="form-control" required />
@@ -29,14 +29,18 @@ import { reactive } from 'vue'
 export default {
   setup() {
     const form = reactive({ title: '', description: '' })
-
-    const onSubmit = async () => {
-      await Post.create({ ...form })
-      form.title = ''
-      form.description = ''
+    return { form }
+  },
+  methods: {
+    async submit () {
+      try {
+        await Post.create({ ...this.form })
+        this.form.title = ''
+        this.form.description = ''
+      } catch (error) {
+        alert(error.message)
+      }
     }
-
-    return { form, onSubmit }
   }
 }
 </script>
